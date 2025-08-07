@@ -1,0 +1,7 @@
+Here are some helpful websites to get thinking about ddRADSeq data analysis.
+
+# Stacks: This will be ran first on the raw data to trim adapters, filter the data, and to call SNPs. (STACKS is already loaded on Suzy's Server FUNK and CURIE). 
+https://catchenlab.life.illinois.edu/stacks/manual/
+
+We will use STACKS to run process_radtags and denovo_map.pl. See if you can figure out what these commands are doing and how to run them/what do each of the parameters mean. populations is another
+STACKS command we can use to help optimize the data and will want to do this multiple times for the paper. 
