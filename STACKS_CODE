@@ -1,0 +1,18 @@
+# this is a hashtag, hastags are lines of code that are not ran
+# This code was run on Severs at Chicago Botanic Garden
+# The first step in STACKS is to demultiplex the data using process_radtags within the STACKS program
+# to run this we need to 1) make an output folder for the output and 2) make a barcode file to retrieve our samples
+
+# use the mkdir command to make a new directory (for example below : mkdir kearn_out)
+# Use nano for text editing, for example nano barcode will make a new file called barcode. The barcode file should be organized by barcode [tab] sample name. barcodes are found on the library prep summary sheet tab 7
+# here is the first five lines in the barcode file used for this code, these first five samples correspond to A1,B1,C1,D1,E1 wells from our sequencing plates - think digestion and normalizing.
+
+GCATG	UBC20
+AACCA	P19
+CGATC	UBC1
+TCGAT	UBC14
+TGCAT	P16
+
+#process_radtags is the first step in STACKS
+nohup  process_radtags -1 S1_S20_R1_001.fastq.gz -2 S1_S20_R2_001.fastq.gz  -i gzfastq -b barcode  -o kearn_out --inline_null --renz_1 ecoRI --renz_2 mspI --adapter_1 ACACTCTTTCCCTACACGACGCTCTTCCGATCT --adapter_2 GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT --adapter_mm 2 -r -c -q -t 100 -s 10 &
+
