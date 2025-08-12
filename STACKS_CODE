@@ -16,6 +16,8 @@ TGCAT	P16
 #process_radtags is the first step in STACKS
 nohup  process_radtags -1 S1_S20_R1_001.fastq.gz -2 S1_S20_R2_001.fastq.gz  -i gzfastq -b barcode  -o kearn_out --inline_null --renz_1 ecoRI --renz_2 mspI --adapter_1 ACACTCTTTCCCTACACGACGCTCTTCCGATCT --adapter_2 GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT --adapter_mm 2 -r -c -q -t 100 -s 10 &
 
+# Change directory to kearn_out and rm *rem.1.fq.gz and rm *rem.2.fq.gz
+
 
 
 
