@@ -13,10 +13,20 @@ CGATC	UBC1
 TCGAT	UBC14
 TGCAT	P16
 
-#process_radtags is the first step in STACKS
-nohup  process_radtags -1 S1_S20_R1_001.fastq.gz -2 S1_S20_R2_001.fastq.gz  -i gzfastq -b barcode  -o kearn_out --inline_null --renz_1 ecoRI --renz_2 mspI --adapter_1 ACACTCTTTCCCTACACGACGCTCTTCCGATCT --adapter_2 GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT --adapter_mm 2 -r -c -q -t 100 -s 10 &
+#process_radtags is the first step in STACKS This is for both fugatei libraries
+process_radtags -1 AFU3_S3_R1_001.fastq.gz  -2 AFU3_S3_R2_001.fastq.gz  -i gzfastq -b fmap_1  -o fugate_raw --inline_null --renz_1 ecoRI --renz_2 mspI --adapter_1 ACACTCTTTCCCTACACGACGCTCTTCCGATCT --adapter_2 GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT --adapter_mm 2 -r -c -q --force-poly-g-check --threads 10
+# reads retained = 97997938 (20%) out of 485022258 
+process_radtags -1 AFU4_S4_R1_001.fastq.gz  -2 AFU4_S4_R2_001.fastq.gz  -i gzfastq -b fmap_2  -o fugate_raw --inline_null --renz_1 ecoRI --renz_2 mspI --adapter_1 ACACTCTTTCCCTACACGACGCTCTTCCGATCT --adapter_2 GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT --adapter_mm 2 -r -c -q --force-poly-g-check --threads 10
+# All samples had a enought data to pass on
 
-# Change directory to kearn_out and rm *rem.1.fq.gz and rm *rem.2.fq.gz
+#Fugatei Denovo assembly
+3848 loci passed filtering of r80
+
+## Next up we are going to with vcf tools
+vcftools --vcf populations.snps.vcf --maf 0.05 --recode --recode-INFO-all --out maf05 # Kept 1969 Sites #Kearney kept 1522 out of 2024
+# Check for missing data per sample
+vcftools --vcf maf05.recode.vcf  --missing-indv
+# More than half our samples have 50% missing sites or more... go back to denovo assembly and filter by r60
 
 
 
