@@ -28,6 +28,8 @@ vcftools --vcf populations.snps.vcf --maf 0.05 --recode --recode-INFO-all --out 
 vcftools --vcf maf05.recode.vcf  --missing-indv
 # More than half our samples have 50% missing sites or more... go back to denovo assembly and filter by r60
 
+#fugatei with r60 6423 kept 3903
+vcftools --vcf populations.snps.vcf --maf 0.05 --recode --recode-INFO-all --out maf05
 
 
 
